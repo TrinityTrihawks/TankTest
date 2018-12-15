@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix.motorcontrol.*;
@@ -26,15 +28,15 @@ public class Drivetrain extends Subsystem {
   PigeonIMU gyro;
 
   public Drivetrain(){
-    masterLeft = new TalonSRX(1);
-    masterRight = new TalonSRX(2);
-    slaveLeft = new TalonSRX(3);
-    slaveRight = new TalonSRX(4);
+    masterLeft = new TalonSRX(RobotMap.frontLeftWheel);
+    masterRight = new TalonSRX(RobotMap.frontRightWheel);
+    slaveLeft = new TalonSRX(RobotMap.backLeftWheel);
+    slaveRight = new TalonSRX(RobotMap.backRightWheel);
 
-    slaveLeft.set(ControlMode.Follower, 1);
-    slaveRight.set(ControlMode.Follower, 2);
+    slaveLeft.set(ControlMode.Follower, RobotMap.frontLeftWheel);
+    slaveRight.set(ControlMode.Follower, RobotMap.frontRightWheel);
 
-    gyro = new PigeonIMU(1);
+    gyro = new PigeonIMU(RobotMap.gyro);
   }
   
 
