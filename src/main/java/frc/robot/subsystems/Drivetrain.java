@@ -31,26 +31,29 @@ public class Drivetrain extends Subsystem {
   PigeonIMU gyro;
 
   public Drivetrain(){
+    // create the wheels
     masterLeft = new TalonSRX(RobotMap.frontLeftWheel);
     masterRight = new TalonSRX(RobotMap.frontRightWheel);
     slaveLeft = new TalonSRX(RobotMap.backLeftWheel);
     slaveRight = new TalonSRX(RobotMap.backRightWheel);
 
+    // set the back wheels to mirror the front wheels
     slaveLeft.set(ControlMode.Follower, RobotMap.frontLeftWheel);
     slaveRight.set(ControlMode.Follower, RobotMap.frontRightWheel);
 
+    // create the gyro
     gyro = new PigeonIMU(RobotMap.gyro);
   }
   
 
   public void Drive(double leftPower, double rightPower){
+    // Set power to left and right sides of the robot
     masterLeft.set(ControlMode.PercentOutput, leftPower);
     masterRight.set(ControlMode.PercentOutput, rightPower);
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     setDefaultCommand(new TeleopDrive());
   }
 }

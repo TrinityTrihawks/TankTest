@@ -29,9 +29,11 @@ public class TeleopDrive extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+      // get power values from the controller
       double leftPower = Robot.oi.controller.getRawAxis(RobotMap.leftVerticalAxis);
       double rightPower = Robot.oi.controller.getRawAxis(RobotMap.rightVerticalAxis);
 
+      // Set power of the wheels
       Robot.drivetrain.Drive(leftPower, rightPower);
   }
 
